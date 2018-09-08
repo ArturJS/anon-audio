@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import Header from '../header';
 import AudioPlayer from '../audio-player';
+import { queryString } from './utils';
 import './style.scss';
 
 export default class App extends Component {
@@ -9,12 +10,10 @@ export default class App extends Component {
     };
 
     componentDidMount() {
-        const audioSrc = decodeURIComponent(
-            location.search.replace('?url=', '')
-        );
+        const { url } = queryString.parse(location.search);
 
         this.setState({
-            audioSrc
+            audioSrc: url
         });
     }
 
@@ -25,7 +24,7 @@ export default class App extends Component {
         history.replaceState(
             {},
             '',
-            `${pathname}?url=${encodeURIComponent(audioSrc)}`
+            `${pathname}${queryString.stringify({ url: audioSrc })}`
         );
 
         this.setState({
