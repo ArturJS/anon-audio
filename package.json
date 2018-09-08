@@ -26,6 +26,7 @@
         "node-sass": "^4.9.3",
         "preact-cli": "^2.1.0",
         "preact-render-spy": "^1.2.1",
+        "prop-types": "^15.6.2",
         "sass-loader": "^7.1.0"
     },
     "dependencies": {

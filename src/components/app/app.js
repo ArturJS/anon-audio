@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import Header from '../header';
 import AudioPlayer from '../audio-player';
+import UrlInput from '../url-input';
 import { queryString } from './utils';
 import './style.scss';
 
@@ -40,10 +41,7 @@ export default class App extends Component {
                 <Header />
                 <div className="page-content">
                     <AudioPlayer src={audioSrc} />
-                    <textarea
-                        className="url-input"
-                        ref={node => (this.textareaRef = node)}
-                    />
+                    <UrlInput innerRef={node => (this.textareaRef = node)} />
                     <button
                         type="button"
                         className="btn-save"
