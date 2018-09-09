@@ -1,14 +1,7 @@
 import { h, Component } from 'preact';
 import PropTypes from 'prop-types';
+import { createRef } from '../../utils';
 import './style.scss';
-
-const createRef = () => {
-    const saveRef = node => {
-        saveRef.current = node;
-    };
-
-    return saveRef;
-};
 
 export default class UrlInput extends Component {
     static propTypes = {
@@ -29,6 +22,10 @@ export default class UrlInput extends Component {
     autofitContent = () => {
         window.requestAnimationFrame(() => {
             const { current: textareaEl } = this.textareaRef;
+
+            if (!textareaEl) {
+                return;
+            }
 
             textareaEl.style.height = '0px';
             textareaEl.style.height = `${textareaEl.scrollHeight}px`;
