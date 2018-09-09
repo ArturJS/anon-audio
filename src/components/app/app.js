@@ -7,14 +7,16 @@ import './style.scss';
 
 export default class App extends Component {
     state = {
-        audioSrc: null
+        audioSrc: null,
+        readonly: false
     };
 
     componentDidMount() {
-        const { url } = queryString.parse(location.search);
+        const { url, readonly } = queryString.parse(location.search);
 
         this.setState({
-            audioSrc: url
+            audioSrc: url,
+            readonly
         });
     }
 
@@ -22,10 +24,17 @@ export default class App extends Component {
         const { pathname } = location;
         const audioSrc = this.textareaRef.value;
 
+        if (!audioSrc) {
+            return;
+        }
+
         history.replaceState(
             {},
             '',
-            `${pathname}${queryString.stringify({ url: audioSrc })}`
+            `${pathname}${queryString.stringify({
+                url: audioSrc,
+                readonly: true
+            })}`
         );
 
         this.setState({
@@ -33,22 +42,30 @@ export default class App extends Component {
         });
     };
 
+    renderUrlForm() {
+        return (
+            <div className="url-form">
+                <UrlInput innerRef={node => (this.textareaRef = node)} />
+                <button
+                    type="button"
+                    className="btn-save"
+                    onClick={this.saveUrl}
+                >
+                    Save url
+                </button>
+            </div>
+        );
+    }
+
     render() {
-        const { audioSrc } = this.state;
+        const { audioSrc, readonly } = this.state;
 
         return (
             <div id="app">
                 <Header />
                 <div className="page-content">
                     <AudioPlayer src={audioSrc} />
-                    <UrlInput innerRef={node => (this.textareaRef = node)} />
-                    <button
-                        type="button"
-                        className="btn-save"
-                        onClick={this.saveUrl}
-                    >
-                        Save url
-                    </button>
+                    {!readonly && this.renderUrlForm()}
                 </div>
             </div>
         );
