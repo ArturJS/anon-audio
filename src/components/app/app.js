@@ -28,7 +28,7 @@ export default class App extends Component {
 
         this.setState({
             audioSrc: url || null,
-            readonly: readonly || false,
+            readonly: readonly === 'true',
             currentTime: +currentTime || 0
         });
     };
@@ -51,7 +51,9 @@ export default class App extends Component {
         );
 
         this.setState({
-            audioSrc
+            audioSrc,
+            readonly: true,
+            currentTime: 0
         });
     };
 
