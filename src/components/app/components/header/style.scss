@@ -17,5 +17,11 @@
         line-height: 56px;
         font-weight: 400;
         color: #ef6c00;
+        cursor: pointer;
+        transition: color 0.25s ease;
+
+        &:hover {
+            color: #ffc107;
+        }
     }
 }

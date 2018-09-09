@@ -60,8 +60,8 @@ export default class App extends Component {
         const { pathname } = location;
 
         history.replaceState(
-            {},
-            '',
+            null,
+            null,
             `${pathname}${queryString.stringify({
                 url: audioSrc,
                 readonly,
