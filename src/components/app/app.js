@@ -27,7 +27,7 @@ export default class App extends Component {
         );
 
         this.setState({
-            audioSrc: url || null,
+            audioSrc: url ? atob(url) : null,
             readonly: readonly === 'true',
             currentTime: +currentTime || 0
         });
@@ -45,7 +45,7 @@ export default class App extends Component {
             {},
             '',
             `${pathname}${queryString.stringify({
-                url: audioSrc,
+                url: btoa(audioSrc),
                 readonly: true
             })}`
         );
@@ -65,7 +65,7 @@ export default class App extends Component {
             null,
             null,
             `${pathname}${queryString.stringify({
-                url: audioSrc,
+                url: btoa(audioSrc),
                 readonly,
                 currentTime
             })}`
