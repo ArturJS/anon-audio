@@ -16,7 +16,7 @@ describe('Anon audio', () => {
         cy.location().should(location => {
             expect(location.search).to.eq(
                 [
-                    '?url=https%3A%2F%2Fpsv4.vkuseraudio.net%2Fc6114%2Fu82519292%2Faudios%2F0396ac48fe65.mp3',
+                    '?url=aHR0cHM6Ly9wc3Y0LnZrdXNlcmF1ZGlvLm5ldC9jNjExNC91ODI1MTkyOTIvYXVkaW9zLzAzOTZhYzQ4ZmU2NS5tcDM%3D',
                     'readonly=true',
                     'currentTime=0'
                 ].join('&')
