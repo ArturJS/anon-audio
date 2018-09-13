@@ -46,7 +46,8 @@ export default class App extends Component {
             '',
             `${pathname}${queryString.stringify({
                 url: btoa(audioSrc),
-                readonly: true
+                readonly: true,
+                currentTime: 0
             })}`
         );
 
